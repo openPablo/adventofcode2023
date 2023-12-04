@@ -7,14 +7,12 @@ start_time = datetime.now()
 
 puzzleLength = len(puzzleInput) -1
 pattern = re.compile("\d+")
-y = 0
 result = 0
-while y < len(puzzleInput):
-    card = puzzleInput[y].split(": ")[1].split("|")
+for line in puzzleInput:
+    card = line.split(": ")[1].split("|")
     hits = set(pattern.findall(card[0])).intersection(pattern.findall(card[1]))
     if hits:
         result += pow(2, len(hits) - 1)
-    y+= 1
 
 end_time = datetime.now()
 
